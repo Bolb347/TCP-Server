@@ -1,6 +1,6 @@
 import socket, selectors, types
 
-selector = selector.DefaultSelector()
+selector = selectors.DefaultSelector()
 
 host = 127.0.0.1 #set to the host of the server's ip
 port = 4096 #set to the port to listen to (needs to be larger than 1024)
