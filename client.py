@@ -16,4 +16,5 @@ def recieve_bytes: #recieves and returns bytes from the server
 def decode(bytes):
   return bytes.decode()
 
-send_data(b"connected")
+while True:
+  send_data(b"connected")
