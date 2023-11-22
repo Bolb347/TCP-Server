@@ -19,10 +19,12 @@ def thread(client): #threads a client
 
     data = b"hello" #creates data (needs to be tested for on client side)
     client.send(data) #sends the data
+    print("sent data: "+data)
   client.close()
 
 while True:
   client, address = socket.accept() #accepts the client
+  print("accepted new client"+client+address)
   lock.acquire()
 
   start_new_thread(thread, (client,)) #creates the thread
