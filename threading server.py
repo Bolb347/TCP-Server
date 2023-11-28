@@ -14,14 +14,14 @@ data_in = []
 threads = []
 
 def addData(data_list, data, client_file_descriptor):
-  data_list.append(types.SimpleNamespace(data, client_file_descriptor))
+  data_list.append(types.SimpleNamespace(data = data, client_fd = client_file_descriptor))
 
 def thread(client): #threads a client
   print("initializing threading")
   threads.append(client.fileno())
   while True:
     try:
-      data_in.append(types.SimpleNameSpace(client.recv(1024), client.fileno())) #recieves 1024 bytes of data from the given client
+      data_in.append(types.SimpleNameSpace(data = client.recv(1024), client_fd = client.fileno())) #recieves 1024 bytes of data from the given client
       if data == None: #removes the client if it has disconnected
         print("removing thread to client "+str(client))
         break
