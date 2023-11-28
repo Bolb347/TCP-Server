@@ -9,6 +9,8 @@ socket.listen()
 
 data_out = []
 
+data_in = []
+
 threads = []
 
 def addData(data_list, data, client_file_descriptor):
@@ -19,7 +21,7 @@ def thread(client): #threads a client
   threads.append(client.fileno())
   while True:
     try:
-      data = client.recv(1024) #recieves 1024 bytes of data from the given client
+      data_in.append(types.SimpleNameSpace(client.recv(1024), client.fileno())) #recieves 1024 bytes of data from the given client
       if data == None: #removes the client if it has disconnected
         print("removing thread to client "+str(client))
         break
