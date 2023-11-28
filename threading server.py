@@ -9,11 +9,14 @@ socket.listen()
 
 data_out = []
 
+threads = []
+
 def addData(data_list, data, client_file_descriptor):
   data_list.append(types.SimpleNamespace(data, client_file_descriptor))
 
 def thread(client): #threads a client
   print("initializing threading")
+  threads.append(client.fileno())
   while True:
     try:
       data = client.recv(1024) #recieves 1024 bytes of data from the given client
@@ -26,6 +29,8 @@ def thread(client): #threads a client
       print("sent data: "+str(data))
     except:
       break
+  try:
+    threads.remove(client.fileno())
   client.close()
 
 while True:
