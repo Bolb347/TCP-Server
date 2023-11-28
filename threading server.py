@@ -1,4 +1,4 @@
-import socket, threading
+import socket, threading, types
 
 host = "127.0.0.1"
 port = 4096
@@ -6,6 +6,11 @@ port = 4096
 socket = socket.socket()
 socket.bind((host, port))
 socket.listen()
+
+data_out = []
+
+def addData(data_list, data, client_file_descriptor):
+  data_list.append(types.SimpleNamespace(data, client_file_descriptor))
 
 def thread(client): #threads a client
   print("initializing threading")
