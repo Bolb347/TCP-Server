@@ -23,7 +23,7 @@ def thread(client): #threads a client
       client.send(data) #sends the data
       print("sent data: "+str(data))
     except:
-      print("ERR")
+      break
   client.close()
   lock.release()
 
