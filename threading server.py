@@ -20,7 +20,6 @@ def thread(client): #threads a client
       data = client.recv(1024)
       data_in.append((client.fileno(), data))
       if data == None: #removes the client if it has disconnected
-        print("!!!")
         break
       for data in data_out:
         if data[0] == client.fileno(): #tests for specified client
