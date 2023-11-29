@@ -28,7 +28,6 @@ def thread(client): #threads a client
 
       data = b"hello" #creates data (needs to be tested for on client side)
       client.send(data) #sends the data
-      print("sent data: "+str(data))
     except:
       break
   try:
@@ -40,5 +39,11 @@ while True:
   print("accepted new client"+str(client)+str(address))
 
   threading._start_new_thread(thread, (client,)) #creates the thread
+
+  print("Recieved data: "+data_in)
+  data_in = []
+
+  print("Sending data:"+data_out)
+  data_out = []
 
 socket.close()
