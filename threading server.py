@@ -1,14 +1,13 @@
 import socket, threading, types
 
 host = "127.0.0.1"
-port = 4096
+port = 52000
 
 socket = socket.socket()
 socket.bind((host, port))
 socket.listen()
 
 data_out = []
-
 data_in = []
 
 threads = []
@@ -41,12 +40,9 @@ while True:
 
   threading._start_new_thread(thread, (client, )) #creates the thread with (function, arguments)
 
-  data_out.append(data = input("data you want to send"), client_fd = input("client file descriptor:")))
+  data_out.append(types.SimpleNamespace(data = "abcd", client_fd = input("client file descriptor:")))
 
-  print("Recieved data: "+data_in)
   data_in = []
-
-  print("Sending data:"+data_out)
   data_out = []
 
 socket.close()
