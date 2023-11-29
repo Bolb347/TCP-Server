@@ -8,15 +8,6 @@ socket = socket.socket()
 socket.connect((host, port))
 socket.settimeout(None)
 
-def send_data(data): #sends data to server (needs to be in byte form before by using b"data")
-  socket.sendall(data)
-
-def recieve_bytes(): #recieves and returns bytes from the server
-  return socket.recv(4096)
-
-def decode(bytes):
-  return bytes.decode()
-
 while True:
-  send_data(b"connected")
-  print("recieved data: "+str(decode(recieve_bytes())))
+  socket.sendall(b"connected")
+  print("recieved data: "+str(socket.recv(1024).decode('utf-8')))
