@@ -29,7 +29,7 @@ def thread(client): #threads a client
 
       for data in data_out:
         if data.client_fd == client.fileno(): #tests for specified client
-          client.send(data.data) #sends data
+          client.send(bytes(data.data)) #sends data
     except:
       break
   try:
