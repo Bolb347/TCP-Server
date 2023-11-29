@@ -1,4 +1,4 @@
-import socket, threading, types
+import socket, threading
 
 host = "127.0.0.1"
 port = 52000
@@ -18,7 +18,7 @@ def thread(client): #threads a client
   while True:
     try:
       data = client.recv(1024)
-      #data_in.append(types.SimpleNameSpace(data = client.recv(1024), client_fd = client.fileno())) #recieves 1024 bytes of data from the given client
+      data_in.append((client.fileno(), data))
       if data == None: #removes the client if it has disconnected
         print("!!!")
         break
