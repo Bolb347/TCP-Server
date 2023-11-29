@@ -13,9 +13,6 @@ data_in = []
 
 threads = []
 
-def addData(data_list, data, client_file_descriptor):
-  data_list.append(types.SimpleNamespace(data = data, client_fd = client_file_descriptor))
-
 def thread(client): #threads a client
   print("initializing threading")
   threads.append(client.fileno())
@@ -34,15 +31,17 @@ def thread(client): #threads a client
       break
   try:
     threads.remove(client.fileno())
+  finally:
+    pass
   client.close()
 
 while True:
   client, address = socket.accept() #accepts the client
   print("accepted new client"+str(client)+str(address))
 
-  threading._start_new_thread(thread, client) #creates the thread with (function, arguments)
+  threading._start_new_thread(thread, (client, )) #creates the thread with (function, arguments)
 
-  data_out.append(addData(data_out, input("data you want to send"), input("client file descriptor:")))
+  data_out.append(data = input("data you want to send"), client_fd = input("client file descriptor:")))
 
   print("Recieved data: "+data_in)
   data_in = []
