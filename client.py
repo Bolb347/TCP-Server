@@ -19,4 +19,3 @@ def decode(bytes):
 while True:
   send_data(b"connected")
   print("recieved data: "+str(decode(recieve_bytes())))
-  print("sent data")
