@@ -42,7 +42,7 @@ while True:
 
   threading._start_new_thread(thread, client) #creates the thread with (function, arguments)
 
-  data_out.append(types.SimpleNamespace(data = input("data you want to send:"), client_fd = input("client file descriptor:")))
+  data_out.append(addData(data_out, input("data you want to send"), input("client file descriptor:")))
 
   print("Recieved data: "+data_in)
   data_in = []
