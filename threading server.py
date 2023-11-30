@@ -45,7 +45,8 @@ while True:
 
   if len(threads):
     data_out.append((threads[0], "hi"))
-  
+  if len(threads) >= 2:
+    data_out.append((threads[1], "hello"))
   #data_out = []
   data_in = []
 
