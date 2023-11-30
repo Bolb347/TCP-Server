@@ -25,6 +25,7 @@ def thread(client): #threads a client
         if data[0] == client.fileno(): #tests for specified client
           client.send(bytes(data[1], 'utf-8')) #sends data
           print("sending data")
+          data_out.remove(data)
     except:
       break
   print("removing thread to client "+str(client))
