@@ -35,7 +35,7 @@ def thread(client): #threads a client
     pass
   client.close()
 
-def main:
+def main():
   while True:  
     client, address = socket.accept() #accepts the client
     print("accepted new client"+str(client)+str(address))
