@@ -36,19 +36,20 @@ def thread(client): #threads a client
   client.close()
 
 def main():
-  while True:  
-    client, address = socket.accept() #accepts the client
+  while True:
+    if socket.accept():
+      client, address = socket.accept() #accepts the client
     print("accepted new client"+str(client)+str(address))
 
     print("checking for threads")
-    Thread(target = thread, (client, )).start()
+    Thread(target = thread, args = (client, )).start()
     #threading._start_new_thread(thread, (client, )) #creates the thread with (function, arguments)
     print("adding threads")
 
 
     if len(threads):
       data_out.append((threads[0], "hi"))
-    if len(threads) >= 2:
+    if len(threads) == 2:
       data_out.append((threads[1], "hello"))
     data_in = []
   socket.close()
