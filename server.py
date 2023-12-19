@@ -1,4 +1,5 @@
-import socket, threading
+import socket
+from threading import Thread
 
 host = "127.0.0.1"
 port = 52000
