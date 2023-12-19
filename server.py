@@ -14,6 +14,7 @@ data_in = []
 threads = []
 
 def game():
+  global data_in, data_out, threads
   while True:
     print(data_in)
     data_in = []
@@ -21,6 +22,7 @@ def game():
       data_out.append((thread, thread))
 
 def thread(client): #threads a client
+  global data_in, data_out, threads
   threads.append(client.fileno())
   print(threads)
   while True:
