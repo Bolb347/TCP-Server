@@ -9,5 +9,8 @@ socket.connect((host, port))
 socket.settimeout(None)
 
 while True:
-  socket.sendall(b"connected")
+  try:
+    socket.sendall(b"connected")
+  except:
+    print("WARNING: could not send data: probably a server-side problem")
   print("recieved data: "+str(socket.recv(1024).decode('utf-8')))
