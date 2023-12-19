@@ -16,26 +16,26 @@ threads = []
 def game():
   global data_in, data_out, threads
   while True:
-    print(data_in)
     data_in = []
     for thread in threads:
-      data_out.append((thread, thread))
+        data_out.append((thread,b"abc"))
 
 def thread(client): #threads a client
   global data_in, data_out, threads
   threads.append(client.fileno())
   print(threads)
-  while True:
-    try:
-      data = client.recv(1024)
-      data_in.append((client.fileno(), data))
-      for data in data_out:
-        if data[0] == client.fileno(): #tests for specified client
-          client.send(bytes(data[1], 'utf-8')) #sends data
-          print("sending data")
-          data_out.remove(data)
-    except:
-      break
+  data = None
+  try:
+    data = client.recv(1024)
+  except:
+    print("encountered err while recv")
+    return
+  data_in.append((client.fileno(), data))
+  for data in data_out:
+    if data[0] == client.fileno(): #tests for specified client
+      client.send(data[1]) #sends data
+      print("sending data")
+      data_out.remove(data)
   print("removing thread to client "+str(client))
   try:
     threads.remove(client.fileno())
@@ -46,6 +46,7 @@ def thread(client): #threads a client
 Thread(target = game).start() #starts the main game loop for it to not be stopped by socket.accept()
 
 while True:
+  print("accepting...") 
   client, address = socket.accept() #accepts the client; WARNING: blocks the entire un-threaded program until a client attempts a connection
   Thread(target = thread, args = (client, )).start()
   print("accepted new client"+str(client)+str(address))
