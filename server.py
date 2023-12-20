@@ -36,6 +36,7 @@ def thread(client): #threads a client
         client.send(data[1]) #sends data
       except:
         print("encountered err while sending")
+        break
       data_out.remove(data)
   print("removing thread to client "+str(client))
   try:
