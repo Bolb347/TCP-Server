@@ -1,4 +1,4 @@
-import socket
+import socket, random
 from threading import Thread
 
 host = "127.0.0.1"
@@ -18,7 +18,7 @@ def game():
   while True:
     data_in = []
     for thread in threads:
-        data_out.append((thread, "abc".encode('utf-8')))
+        data_out.append((thread, str(random.randint(0, 10)).encode('utf-8')))
 
 def thread(client): #threads a client
   global data_in, data_out, threads
