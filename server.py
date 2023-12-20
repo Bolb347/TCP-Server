@@ -18,7 +18,7 @@ def game():
   while True:
     data_in = []
     for thread in threads:
-        data_out.append((thread,b"abc"))
+        data_out.append((thread, "abc".encode('utf-8')))
 
 def thread(client): #threads a client
   global data_in, data_out, threads
@@ -29,12 +29,14 @@ def thread(client): #threads a client
     data = client.recv(1024)
   except:
     print("encountered err while recv")
-    return
+    break
   data_in.append((client.fileno(), data))
   for data in data_out:
     if data[0] == client.fileno(): #tests for specified client
-      client.send(data[1]) #sends data
-      print("sending data")
+      try:
+        client.send(data[1]) #sends data
+      except:
+        print("encountered err while sending")
       data_out.remove(data)
   print("removing thread to client "+str(client))
   try:
