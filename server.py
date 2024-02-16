@@ -13,7 +13,7 @@ data_in = []
 
 threads = []
 
-def game():
+def main():
     global data_in, data_out, threads
     while True:
         data_in = []
@@ -48,7 +48,7 @@ def thread(client): #threads a client
     
     client.close()
 
-Thread(target = game).start() #starts the main game loop for it to not be stopped by socket.accept()
+Thread(target = main).start() #starts the main game loop for it to not be stopped by socket.accept()
 
 while True:
     print("accepting...") 
