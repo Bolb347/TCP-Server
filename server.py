@@ -31,7 +31,7 @@ def thread(client): #threads a client
     while not broken:
         data = None
         try:
-            data = client.recv(1024)
+            data = client.recv(1024).decode('utf-8')
         except:
             print("encountered err while recv")
         
