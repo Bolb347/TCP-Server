@@ -33,7 +33,6 @@ def thread(client): #threads a client
             data = client.recv(1024)
         except:
             print("encountered err while recv")
-            broken = True
         
         data_in.append((client.fileno(), data))
         for data in data_out:
