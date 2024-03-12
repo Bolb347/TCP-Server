@@ -1,4 +1,4 @@
-import socket
+import socket, time
 
 host = "127.0.0.1"#input("Enter the server host IP (127.0.0.1 if it is your computer): ")#"127.0.0.1" #need to change for connecting to a server not on your computer
 port = 52000#input("Enter the server port number (4096 for this demonstration): ")#4096 #port: need to connect to the server port
@@ -9,6 +9,7 @@ socket.connect((host, port))
 socket.settimeout(None)
 
 while True:
+    time.sleep(1)
     try:
         socket.sendall(b"connected")
     except:
