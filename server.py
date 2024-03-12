@@ -17,10 +17,11 @@ def main():
     global data_in, data_out, threads
     while True:
         time.sleep(1)
+        for data in data_in:
+            print(data[0])
         data_in = []
         for thread in threads:
-            for i in range(5):
-                data_out.append((thread, str(i).encode('utf-8')))
+            data_out.append((thread, str(1).encode('utf-8')))
 
 def thread(client): #threads a client
     global data_in, data_out, threads
@@ -60,7 +61,5 @@ while True:
     client, address = socket.accept() #accepts the client; WARNING: blocks the entire un-threaded program until a client attempts a connection
     Thread(target = thread, args = (client, )).start()
     print("accepted new client"+str(client)+str(address))
-
-    data_in = []
 
 socket.close()
