@@ -39,7 +39,7 @@ def thread(client): #threads a client
         for data in data_out:
             if data[0] == client.fileno(): #tests for specified client
                 try:
-                    client.send(data[1]) #sends data
+                    client.sendall(data[1]) #sends data
                 except:
                     print("encountered err while sending")
                     broken = True
